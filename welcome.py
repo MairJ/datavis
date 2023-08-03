@@ -16,11 +16,11 @@ df = pd.read_csv(selected_file)
 st.dataframe(df)
 
 el_list = df.columns.tolist()[27:80]
-x_axis = st.selectbox('Select Element', el_list)
-el1, el2 = st.multiselect('Select elements for x and y axes', el_list[:2], default=el_list[:2])
+el1 = st.selectbox('Select Element_X', el_list)
+el2 = st.selectbox('Select Element_Y', el_list)
 
-x = df.loc[5:26, el1]
-y = df.loc[5:26, el2]
+x = df[el1]  # Selecting the entire column for x axis
+y = df[el2]  # Selecting the entire column for y axis
 
 p = figure(title='Simple line example', x_axis_label=el1, y_axis_label=el2)
 
