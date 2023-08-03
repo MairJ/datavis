@@ -15,6 +15,9 @@ selected_file = st.selectbox('Select a CSV file', file_name_list)
 df = pd.read_csv(selected_file)
 st.dataframe(df)
 
+
+
+
 el_list = df.columns.tolist()[27:80]
 el1 = st.selectbox('Select Element_X', el_list)
 el2 = st.selectbox('Select Element_Y', el_list)
@@ -22,12 +25,14 @@ el2 = st.selectbox('Select Element_Y', el_list)
 x = df[el1]/1e4  # Selecting the entire column for x axis
 y = df[el2]/1e4  # Selecting the entire column for y axis
 
+std_choice = st.radio("Select Number of Standard Deviations", [1, 2, 3], index=1)
+
 mean_y = np.mean(y)
 std_y = np.std(y)
 
 # Calculate upper and lower bounds for ± standard deviation
-upper_bound = mean_y + std_y
-lower_bound = mean_y - std_y
+upper_bound = mean_y + std_choice * std_y
+lower_bound = mean_y - std_choice * std_y
 
 p = figure(title='Mean and ± Standard Deviation', x_axis_label=el1, y_axis_label=el2)
 
