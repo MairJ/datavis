@@ -2,3 +2,5 @@ pandas
 matplotlib
 numpy
 bokeh == 2.4.3
+geopandas
+folium
