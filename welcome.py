@@ -5,7 +5,7 @@ import os
 
 file_name_list = []
 for i in os.listdir():
-  if i.endswith(csv):
+  if i.endswith('csv'):
     file_name_list.append(i)
 st.write(file_name_list)
 
