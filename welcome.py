@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 file_name_list = []
 for i in os.listdir():
