@@ -25,8 +25,8 @@ y = [1,2,3,4,5,6]
 p = figure(
   title = 'simple line example',
   x_axis_label = 'x',
-  y_axis_label = 'y'
-)
+  y_axis_label = 'y')
+
 st.bokeh_chart(p, use_container_width = 2)
 
 
