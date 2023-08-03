@@ -27,11 +27,10 @@ with tab2:
     
         with col2:
             el2 = st.selectbox('Select Element_Y', el_list)
-    
         x = df[el1] / 1e4  # Selecting the entire column for x axis and scaling by 1e4
         y = df[el2] / 1e4  # Selecting the entire column for y axis and scaling by 1e4
-    
-        std_choice = st.radio("Select Number of Standard Deviations", [1, 2, 3], index=1)
+        with col3:
+            std_choice = st.radio("Select Number of Standard Deviations", [1, 2, 3], index=1)
     
         mean_y = np.mean(y)
         std_y = np.std(y)
