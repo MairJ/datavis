@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 file_name_list = []
 for i in os.listdir():
@@ -19,6 +19,17 @@ options = st.multiselect('select location', file_name_list)#, file_name_list[0])
 
 st.write('You selected:', options)
 
+x = [1,2,3,4,5,6]
+y = [1,2,3,4,5,6]
+
+p = figure(
+  title = 'simple line example',
+  x_axis_label = 'x'
+  y_axis_label = 'y'
+)
+st.bokeh_chart(p, use_container_width = 2)
+
+
 """
 st.download_button(
     label="Download data as CSV",
@@ -27,7 +38,7 @@ st.download_button(
     mime='text/csv',
 )
 """
-
+"""
 datasheet_list = file_name_list
 def plot_datasheets(el_x, el_y, datasheet_list):
     for i in datasheet_list:
@@ -38,3 +49,4 @@ def plot_datasheets(el_x, el_y, datasheet_list):
     plt.show()
 
 plot_datasheets('Mg', 'Si', datasheet_list)
+"""
