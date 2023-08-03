@@ -41,7 +41,7 @@ if selected_files:
 
     # Add data points to the map
     for idx, row in gdf.iterrows():
-        folium.Marker(location=[row['Latitude (Min)'], row['Longitude (Min)']],
+        folium.Marker(location=[row['Latitude'], row['Longitude']],
                       popup=f"{el1}: {row[el1]}, {el2}: {row[el2]}").add_to(m)
 
     # Display the map
