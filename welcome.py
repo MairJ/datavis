@@ -15,11 +15,16 @@ selected_files = st.multiselect('Select CSV files', file_name_list)
 if selected_files:
     dfs = [pd.read_csv(file) for file in selected_files]
     df = pd.concat(dfs, ignore_index=True)
-    st.dataframe(df)
 
     el_list = df.columns.tolist()[27:80]
-    el1 = st.selectbox('Select Element_X', el_list)
-    el2 = st.selectbox('Select Element_Y', el_list)
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        el1 = st.selectbox('Select Element_X', el_list)
+
+    with col2:
+        el2 = st.selectbox('Select Element_Y', el_list)
 
     x = df[el1] / 1e4  # Selecting the entire column for x axis and scaling by 1e4
     y = df[el2] / 1e4  # Selecting the entire column for y axis and scaling by 1e4
