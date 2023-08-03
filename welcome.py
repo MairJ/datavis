@@ -3,8 +3,11 @@ import pandas as pd
 import os
 import numpy as np
 from bokeh.plotting import figure
+import folium
+from streamlit_folium import folium_static
 
 tab1, tab2, tab3 = st.tabs(["select", "datavis", "map"])
+
 with tab1:
     file_name_list = []
     for i in os.listdir():
@@ -12,7 +15,7 @@ with tab1:
             file_name_list.append(i)
     
     selected_files = st.multiselect('Select CSV files', file_name_list)
-    
+
 with tab2:
     if selected_files:
         dfs = [pd.read_csv(file) for file in selected_files]
@@ -55,3 +58,20 @@ with tab2:
     # Add data points to the plot
     p.circle(x, y, legend_label="Data Points")
     st.bokeh_chart(p, use_container_width=True)
+
+with tab3:
+    if selected_files:
+        df_map = df[['Latitude (Min)', 'Longitude (Min)', el1, el2]]
+        df_map.columns = ['Latitude', 'Longitude', el1, el2]
+
+        # Center the map at the mean of the data points
+        center = [df_map['Latitude'].mean(), df_map['Longitude'].mean()]
+        m = folium.Map(location=center, zoom_start=10)
+
+        # Add data points to the map
+        for idx, row in df_map.iterrows():
+            popup_text = f"{el1}: {row[el1]}, {el2}: {row[el2]}"
+            folium.Marker(location=[row['Latitude'], row['Longitude']], popup=popup_text).add_to(m)
+
+        # Display the map
+        folium_static(m)
