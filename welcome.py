@@ -11,7 +11,7 @@ for i in os.listdir():
 
 # st.write(file_name_list) # Test
 
-selected_file = st.selectbox('Select a CSV file', file_name_list)
+selected_file = st.miltiselect('Select a CSV file', file_name_list)
 df = pd.read_csv(selected_file)
 st.dataframe(df)
 
