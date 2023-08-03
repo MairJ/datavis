@@ -36,7 +36,7 @@ if selected_files:
     p = figure(title='Mean and ± Standard Deviation', x_axis_label=el1, y_axis_label=el2)
 
     # Plot the mean as a line
-    p.line(x, mean_y, line_color='blue', legend_label='Mean')
+    p.line(x, mean_y, line_color='blue', legend_label='Mean '+ el2)
 
     # Plot the upper bound of standard deviation as a line
     p.line(x, upper_bound, line_color='green', line_dash='dashed', legend_label='Upper Bound')
