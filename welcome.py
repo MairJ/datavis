@@ -17,9 +17,13 @@ x_axis = st.selectbox('Select Element', el_list)
 
 options = st.multiselect('select location', file_name_list, file_name_list[0])
 
+st.write('You selected:', options)
+
+"""
 st.download_button(
     label="Download data as CSV",
     data=csv,
     file_name='options',
     mime='text/csv',
 )
+"""
