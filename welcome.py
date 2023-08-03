@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import os
-#import pyplot from matplotlib as plt
+#import matplotlib.pyplot as plt
 
 file_name_list = []
 for i in os.listdir():
@@ -15,5 +15,11 @@ st.dataframe(df)
 el_list = df.columns.tolist()[27:80]
 x_axis = st.selectbox('Select Element', el_list)
 
-st.multiselect('select location', file_name_list)
+option = st.multiselect('select location', file_name_list, file_name_list[0])
 
+st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='options',
+    mime='text/csv',
+)
