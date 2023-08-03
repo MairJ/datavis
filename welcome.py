@@ -3,51 +3,27 @@ import pandas as pd
 import os
 import numpy as np
 from bokeh.plotting import figure
-import matplotlib.pyplot as plt
 
 file_name_list = []
 for i in os.listdir():
-  if i.endswith('csv'):
-    file_name_list.append(i)
+    if i.endswith('.csv'):
+        file_name_list.append(i)
+
 # st.write(file_name_list) # Test
 
-df = pd.read_csv('Bastar Craton.csv')
+selected_file = st.selectbox('Select a CSV file', file_name_list)
+df = pd.read_csv(selected_file)
 st.dataframe(df)
 
 el_list = df.columns.tolist()[27:80]
 x_axis = st.selectbox('Select Element', el_list)
+el1, el2 = st.multiselect('Select elements for x and y axes', el_list[:2], default=el_list[:2])
 
-options = st.multiselect('select location', file_name_list)#, file_name_list[0])
+x = df.loc[5:26, el1]
+y = df.loc[5:26, el2]
 
-st.write('You selected:', options)
+p = figure(title='Simple line example', x_axis_label=el1, y_axis_label=el2)
 
-x = [1,2,3,4,5,6]
-y = [1,2,3,4,5,6]
+p.circle(x, y, legend_label="Data Points")
 
-p = figure(title = 'simple line example', x_axis_label = 'x', y_axis_label = 'y')
-
-p.circle(x,y,legend)
-
-st.bokeh_chart(p, use_container_width = 2)
-
-
-"""
-st.download_button(
-    label="Download data as CSV",
-    data=csv,
-    file_name='options',
-    mime='text/csv',
-)
-"""
-"""
-datasheet_list = file_name_list
-def plot_datasheets(el_x, el_y, datasheet_list):
-    for i in datasheet_list:
-        plt.scatter(data[el_x]/10000, data[el_y]/10000, label = i[:-4])
-    plt.xlabel(el_x + ' (wt%)')
-    plt.ylabel(el_y+ ' (wt%)')
-    plt.legend()
-    plt.show()
-
-plot_datasheets('Mg', 'Si', datasheet_list)
-"""
+st.bokeh_chart(p, use_container_width=True)
