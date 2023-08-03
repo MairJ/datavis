@@ -23,7 +23,11 @@ x = df[el1]/1e4  # Selecting the entire column for x axis
 y = df[el2]/1e4  # Selecting the entire column for y axis
 
 p = figure(title='Simple line example', x_axis_label=el1, y_axis_label=el2)
-
 p.circle(x, y, legend_label="Data Points")
+# Plot the mean and ±standard deviation of the y-axis value as lines.
+mean_y = np.mean(y)
+p.line(mean_y)
+std_y = np.std(y)
+p.line(std_y)
 
 st.bokeh_chart(p, use_container_width=True)
