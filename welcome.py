@@ -12,6 +12,8 @@ with tab1:
             file_name_list.append(i)
     
     selected_files = st.multiselect('Select CSV files', file_name_list)
+    
+with tab2:
     if selected_files:
         dfs = [pd.read_csv(file) for file in selected_files]
         df = pd.concat(dfs, ignore_index=True)
@@ -49,7 +51,6 @@ with tab1:
         # Plot the lower bound of standard deviation as a line
         p.line(x, lower_bound, line_color='red', line_dash='dashed', legend_label='Lower Bound')
 
-with tab2:
     # Add data points to the plot
     p.circle(x, y, legend_label="Data Points")
     st.bokeh_chart(p, use_container_width=True)
