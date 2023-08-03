@@ -20,17 +20,19 @@ with tab2:
     
         el_list = df.columns.tolist()[27:80]
         
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
     
         with col1:
             el1 = st.selectbox('Select Element_X', el_list)
     
         with col2:
             el2 = st.selectbox('Select Element_Y', el_list)
-        x = df[el1] / 1e4  # Selecting the entire column for x axis and scaling by 1e4
-        y = df[el2] / 1e4  # Selecting the entire column for y axis and scaling by 1e4
+            
         with col3:
             std_choice = st.radio("Select Number of Standard Deviations", [1, 2, 3], index=1)
+    
+        x = df[el1] / 1e4  # Selecting the entire column for x axis and scaling by 1e4
+        y = df[el2] / 1e4  # Selecting the entire column for y axis and scaling by 1e4
     
         mean_y = np.mean(y)
         std_y = np.std(y)
